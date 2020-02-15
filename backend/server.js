@@ -22,10 +22,12 @@ connection.once('open', ()=>{
 const usersRouter = require("./routes/users");
 const collegesRouter = require("./routes/colleges");
 const branchesRouter = require("./routes/branches");
+const subjectsRouter = require("./routes/subjects");
 
 app.use("/users", usersRouter);
 app.use("/colleges", collegesRouter);
 app.use("/branches", branchesRouter);
+app.use("/subjects", subjectsRouter);
 
 
 
