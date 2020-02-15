@@ -18,6 +18,17 @@ connection.once('open', ()=>{
     console.log("mongoDb connection open success");
 });
 
+
+const usersRouter = require("./routes/users");
+const collegesRouter = require("./routes/colleges");
+const branchesRouter = require("./routes/branches");
+
+app.use("/users", usersRouter);
+app.use("/colleges", collegesRouter);
+app.use("/branches", branchesRouter);
+
+
+
 app.listen(port, ()=>{
     console.log(`Listening on port: ${port}`);
 });

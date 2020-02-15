@@ -25,8 +25,14 @@ const userSchema = new Schema(
         required:true,
         trim:true,
     },
-    college:String,
-    branch: String,
+    college:{
+        type:String,
+        required:true,
+    },
+    branch: {
+        type:String,
+        required:true,
+    },
     interested_subjects:[String]
 },{
     timestamps:true,
