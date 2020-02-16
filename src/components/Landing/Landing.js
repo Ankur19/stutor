@@ -17,11 +17,11 @@ function Landing(props){
     function handleSubmit(event){
         axios.get("http://localhost:5000/users/" + email)
         .then(res=>{
-            if (res.data.password === password){
-                window.location("/");
+            if (password.length>0 && res.data[0].password === password){
+                props.history.push("/selection/id=" + res.data[0]._id);
             }
             else{
-                console.log("wrong password");
+                setPassword("");
             }
         });
         event.preventDefault();

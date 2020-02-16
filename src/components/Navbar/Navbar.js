@@ -4,7 +4,14 @@ import { Link } from "react-router-dom";
 
 function Navbar(props){
     return <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
-        <Link to="/" className="navbar-brand">sTutor</Link>
+        <div className="container-fluid">
+        <div className="navbar-header">
+            <Link to="/" className="navbar-brand">sTutor</Link>
+        </div>
+        <ul className="nav navbar-nav">
+            <li><Link to="/">Current Tutions</Link></li>
+        </ul>
+        </div>
     </nav>
 }
 
