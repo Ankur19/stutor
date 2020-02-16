@@ -29,6 +29,10 @@ const discussionSchema = new Schema(
     topic:{
         type:String,
         required:true
+    },
+    status:{
+        type:String,
+        default:"pending"
     }
 });
 
