@@ -11,6 +11,11 @@ router.route("/").get((req, res)=>{
 // 	duration:time 
 // 	max-attendees:integer 
 // 	present_attendees:[“string of object”]
+router.route("/getPending/:place").get((req, res)=>{
+    Discussion.find({status:"pending",place:req.params.place})
+    .then(data => res.json(data))
+    .catch(err => res.status(400).json("Error: "+ err));
+});
 
 router.route("/add").post((req, res)=>{
     const place=req.body.place;

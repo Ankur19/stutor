@@ -7,6 +7,12 @@ router.route("/").get((req, res)=>{
     .catch(err => res.status(400).json("Error: "+ err));
 });
 
+router.route("/:id").get((req, res)=>{
+    Topic.find({_id: req.params.id})
+    .then(data => res.json(data))
+    .catch(err => res.status(400).json("Error: "+ err));
+});
+
 router.route("/:id/:subject").get((req, res)=>{
     Topic.find({author: req.params.id, subject:req.params.subject})
     .then(data => res.json(data))
