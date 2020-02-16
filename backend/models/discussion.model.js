@@ -7,7 +7,6 @@ const discussionSchema = new Schema(
         type:String,
         required:true,
         trim:true,
-        unique:true,
         minlength:3,
     },
     start_time:{

@@ -3,11 +3,7 @@ import "./NewDisc.css";
 
 function NewDisc(props){
 
-
-
     return <div className="container">
-
-
         <form>
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Subject</label>
