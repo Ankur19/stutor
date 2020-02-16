@@ -7,6 +7,12 @@ router.route("/").get((req, res)=>{
     .catch(err => res.status(400).json("Error: "+ err));
 });
 
+router.route("/:id/:subject").get((req, res)=>{
+    Topic.find({author: req.params.id, subject:req.params.subject})
+    .then(data => res.json(data))
+    .catch(err => res.status(400).json("Error: "+ err));
+});
+
 router.route("/add").post((req, res)=>{
     const topic_name=req.body.topic_name;
     const subject=req.body.subject;

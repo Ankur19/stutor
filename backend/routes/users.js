@@ -7,6 +7,12 @@ router.route("/:email").get((req, res)=>{
     .catch(err => res.status(400).json("Error: "+ err));
 });
 
+router.route("/getId/:id").get((req, res)=>{
+    User.find({_id: req.params.id})
+    .then(data => res.json(data))
+    .catch(err => res.status(400).json("Error: "+ err));
+});
+
 router.route("/add").post((req, res)=>{
     const first_name=req.body.first_name;
     const last_name=req.body.last_name;
@@ -15,6 +21,8 @@ router.route("/add").post((req, res)=>{
     const college=req.body.college;
     const branch = req.body.branch;
     const interested_subjects = req.body.interested_subjects;
+    const discussions_participated =  req.body.discussions_participated;
+    const discussions_completed =  req.body.discussions_completed;
 
     const newUser = new User({
         first_name,
@@ -24,6 +32,8 @@ router.route("/add").post((req, res)=>{
         college,
         branch, 
         interested_subjects,
+        discussions_participated,
+        discussions_completed
     });
 
     newUser.save()

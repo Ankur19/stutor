@@ -7,6 +7,12 @@ router.route("/").get((req, res)=>{
     .catch(err => res.status(400).json("Error: "+ err));
 });
 
+router.route("/:id").get((req, res)=>{
+    Subject.find({_id:req.params.id})
+    .then(data => res.json(data))
+    .catch(err => res.status(400).json("Error: "+ err));
+});
+
 router.route("/add").post((req, res)=>{
     const subject_name=req.body.subject_name;
     const subject_code=req.body.subject_code;

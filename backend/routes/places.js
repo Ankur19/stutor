@@ -11,7 +11,11 @@ router.route("/").get((req, res)=>{
 // 	duration:time 
 // 	max-attendees:integer 
 // 	present_attendees:[“string of object”]
-
+router.route("/getPlaces/:collegeId").get((req, res)=>{
+    Place.find({college_id:req.params.collegeId})
+    .then(data => res.json(data))
+    .catch(err => res.status(400).json("Error: "+ err));
+});
 router.route("/add").post((req, res)=>{
     const place=req.body.place;
     const college_id=req.body.college_id;
