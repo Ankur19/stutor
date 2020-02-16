@@ -44,8 +44,12 @@ function AllDiscs(props){
     }
 
     retreiveAllPending();
+
+    
+
+
     return <div className="container">
-        <div className="join-all-pending">{allData}</div>
+        <div className="join-all-pending"></div>
     </div>
 }
 
