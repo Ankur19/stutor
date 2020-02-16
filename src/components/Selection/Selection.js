@@ -5,7 +5,7 @@ function Selection(props){
 
     function handleClick(type){
         if(type==="new"){
-            props.history.push()
+            props.history.push("/new/"+ props.match.params.id);
         }
     }
     return <div id="selector-div" className="container">

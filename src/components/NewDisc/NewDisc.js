@@ -3,22 +3,35 @@ import "./NewDisc.css";
 
 function NewDisc(props){
 
-    
+
 
     return <div className="container">
 
 
-        <form onSubmit={handleSubmit}>
-            <div className="form-group">
-                <label htmlFor="email" className="control-label col-sm-2">Email</label>
-                <input type="email" className="form-control" id="email" placeholder="abc@def.com" value={email} onChange={handleEmailChange}></input>
+        <form>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Subject</label>
+                <select className="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
             </div>
-            <div className="form-group">
-            <label htmlFor="pwd" className="control-label col-sm-2">Password</label>
-            <input id="pwd" className="form-control" type="text" placeholder="123456789" value={password} onChange={handlePasswordChange}></input>
-            
+            <div class="form-group">
+                <label for="exampleFormControlSelect2">Duration</label>
+                <select multiple class="form-control" id="exampleFormControlSelect2">
+                <option value="30">30 mins</option>
+                <option value="60">1 hour</option>
+                <option value="90">1.5 hours</option>
+                <option value="120">2 hours</option>
+                </select>
             </div>
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Example textarea</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
         </form>
 
 
