@@ -10,6 +10,7 @@ function Navbar(props){
         </div>
         <ul className="nav navbar-nav">
             <li><Link to="/">Current Tutions</Link></li>
+            <li><Link to="/analytics">Analytics Dashboard</Link></li>
         </ul>
         </div>
     </nav>
