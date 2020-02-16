@@ -21,6 +21,8 @@ router.route("/add").post((req, res)=>{
     const college=req.body.college;
     const branch = req.body.branch;
     const interested_subjects = req.body.interested_subjects;
+    const discussions_participated =  req.body.discussions_participated;
+    const discussions_completed =  req.body.discussions_completed;
 
     const newUser = new User({
         first_name,
@@ -30,6 +32,8 @@ router.route("/add").post((req, res)=>{
         college,
         branch, 
         interested_subjects,
+        discussions_participated,
+        discussions_completed
     });
 
     newUser.save()

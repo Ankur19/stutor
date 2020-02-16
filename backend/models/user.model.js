@@ -33,7 +33,9 @@ const userSchema = new Schema(
         type:String,
         required:true,
     },
-    interested_subjects:[String]
+    interested_subjects:[String],
+    discussions_participated:[String],
+    discussions_completed:[Number]
 },{
     timestamps:true,
 });

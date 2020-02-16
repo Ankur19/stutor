@@ -3,17 +3,17 @@ import "./NewDisc.css";
 import axios from "axios";
 import DateTimePicker from 'react-datetime-picker';
 
-function checkAvail(userId, currentTime, duration){
-    
-}
-
 function NewDisc(props){
     let newSubjectOptions = []
+    let newPlaces = []
     const[subjectOptions, setSubjectOptions] = useState([]);
+    const[placeOptions, setPlaceOptions] = useState([]);
     const [date, setDate] = useState(new Date());
+    const [userData, setUserData] = useState({});
     useEffect(()=>{
         axios.get("http://localhost:5000/users/getId/" + props.match.params.id.slice(3,))
         .then(userResp=> {
+            setUserData(userResp.data[0]);
             axios.get("http://localhost:5000/branches/" + userResp.data[0].branch)
             .then(res=>{
                 let subjectIds = res.data[0].subjects;
@@ -31,8 +31,22 @@ function NewDisc(props){
                         })
                     })
                 }
+                async function retreivePlaces(){
+                    return new Promise((resolve, reject)=>{
+                        axios.get("http://localhost:5000/places/getPlaces/" + userResp.data[0].college)
+                        .then(resp=>{
+                            resp.data.forEach((place, index)=>{
+                                newPlaces.push(<option key={place._id} value={place._id}>{place.place}</option>);
+                                if(index===resp.data.length-1){
+                                    setPlaceOptions(newPlaces);
+                                    resolve("done");
+                                }
+                            })
+                        })
+                    })
+                }
                 retreiveSubdata();
-                
+                retreivePlaces();
             })
         })
     }, []);
@@ -43,11 +57,37 @@ function NewDisc(props){
         const topic = document.getElementById("topicform").value;
         const duration = document.getElementById("durationform").value;
         const discussionMaterial = document.getElementById("discmaterial").value;
-        if(subject===""||topic===""||duration===""||discussionMaterial===""){
+        const place = document.getElementById("placeform").value;
+        const maxattend = document.getElementById("maxattend").value;
+        if(subject===""||topic===""||duration===""||discussionMaterial==="" ||place===""||maxattend===""){
             document.getElementById("discerror").style.display="inline-block";
         }
         else{
-
+            axios.post("http://localhost:5000/topics/add", {
+                topic_name:topic,
+                subject:subject,
+                discussion_material:discussionMaterial,
+                author: props.match.params.id.slice(3,)
+            })
+            .then(resp=>{
+                axios.get("http://localhost:5000/topics/" + props.match.params.id.slice(3,) + "/" + subject)
+                .then(res=>{
+                    let topic = res.data[res.data.length-1];
+                    let new_topic_id=topic._id;
+                    axios.post("http://localhost:5000/discussions/add", {
+                        place:place,
+                        start_time:date,
+                        duration: duration,
+                        max_attendees: maxattend,
+                        present_attendees: [],
+                        topic: new_topic_id,
+                        status: "pending"
+                    })
+                    .then(resppp=>{
+                        props.history.push("/selection/"+props.match.params.id);
+                    })
+                })
+            })
         }
         e.preventDefault();
     }
@@ -66,11 +106,27 @@ function NewDisc(props){
             </div>
             <div className="form-group">
                 <label htmlFor="durationform">Duration</label>
-                <select multiple className="form-control" id="durationform">
+                <select className="form-control" id="durationform">
                     <option value="30">30 mins</option>
                     <option value="60">1 hour</option>
                     <option value="90">1.5 hours</option>
                     <option value="120">2 hours</option>
+                </select>
+            </div>
+            <div className="form-group">
+                <label htmlFor="placeform">Place</label>
+                <select className="form-control" id="placeform">
+                    {placeOptions}
+                </select>
+            </div>
+            <div className="form-group">
+                <label htmlFor="maxattend">Max Attendees</label>
+                <select className="form-control" id="maxattend">
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
                 </select>
             </div>
             <div className="form-group">
