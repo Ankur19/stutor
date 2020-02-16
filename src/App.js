@@ -7,6 +7,7 @@ import Landing from "./components/Landing/Landing";
 import Selection from "./components/Selection/Selection";
 import NewDisc from './components/NewDisc/NewDisc';
 import AllDiscs from './components/AllDiscs/AllDiscs';
+import Analytics from './components/Analytics/Analytics';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route path="/selection/:id" component={Selection}/>
       <Route path="/new/:id" component={NewDisc}/>
       <Route path="/join/:id" component={AllDiscs}/>
+      <Route path="/analytics" component={Analytics}/>
     </Router>
   );
 }

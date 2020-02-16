@@ -17,6 +17,12 @@ router.route("/getPending/:place").get((req, res)=>{
     .catch(err => res.status(400).json("Error: "+ err));
 });
 
+router.route("/addAttendee/:id/:attendee").put((req, res)=>{
+    Discussion.findByIdAndUpdate(req.params.id, {"$push": {"present_attendees": req.params.attendee}}, {"new":true,"upsert":true}, function (err, managerparent) {
+        if (err) res.status(400).json("Error: " + err);
+    })
+})
+
 router.route("/add").post((req, res)=>{
     const place=req.body.place;
     const start_time=req.body.start_time;
