@@ -18,12 +18,16 @@ router.route("/add").post((req, res)=>{
     const duration = req.body.duration;
     const max_attendees = req.body.max_attendees;
     const present_attendees = req.body.present_attendees;
+    const topic = req.body.topic;
+    const status = req.body.status;
     const newDiscussion = new Discussion({
         place,
         start_time,
         duration,
         max_attendees,
-        present_attendees
+        present_attendees,
+        topic,
+        status
     });
 
     newDiscussion.save()
