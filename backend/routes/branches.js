@@ -20,8 +20,10 @@ router.route("/add").post((req, res)=>{
     .catch(err=> res.status(400).json("Error: " + err))
 });
 
-router.route("/addBranch").post((req, res)=>{
-
+router.route("/addSubject").post((req, res)=>{
+    Branch.findByIdAndUpdate(req.body.id, {"$push": {"subjects": req.subject}}, {"new":true,"upsert":true}, function (err, managerparent) {
+        if (err) res.status(400).json("Error: " + err);
+    })
 });
 
 module.exports = router;
