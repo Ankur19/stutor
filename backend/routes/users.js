@@ -7,6 +7,12 @@ router.route("/:email").get((req, res)=>{
     .catch(err => res.status(400).json("Error: "+ err));
 });
 
+router.route("/getId/:id").get((req, res)=>{
+    User.find({_id: req.params.id})
+    .then(data => res.json(data))
+    .catch(err => res.status(400).json("Error: "+ err));
+});
+
 router.route("/add").post((req, res)=>{
     const first_name=req.body.first_name;
     const last_name=req.body.last_name;
