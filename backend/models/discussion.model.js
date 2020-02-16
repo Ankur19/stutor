@@ -25,6 +25,10 @@ const discussionSchema = new Schema(
     present_attendees:{
         type:[String],
         required:true,
+    },
+    topic:{
+        type:String,
+        required:true
     }
 });
 
