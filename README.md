@@ -3,9 +3,9 @@ sTutor is an efficient application for any undergraduate/graduate students. In m
 
 After a user successfully logs in they will be presented with two option:
 
-1. *To open a new tutoring session that their will lead.
+1. To open a new tutoring session that their will lead.
 
-2. *To join an existing session that matches their needs.
+2. To join an existing session that matches their needs.
 
 To become a tutor the user will be providing parameters like subject, topic, duration, place, max-attendees, discussion material. In a similar way the user who looks for a session can enter their information, and can choose from the list that he thinks is the best match!
 
